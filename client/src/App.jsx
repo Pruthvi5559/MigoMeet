@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import { Sessions } from './pages/Sessions'
 import { Pricing } from './pages/Pricing'
 import MeetingRoom from './pages/MeetingRoom'
+import Login from './pages/Login'
 
 const App = () => {
   return (
@@ -14,8 +15,8 @@ const App = () => {
       <Toaster />
       <Routes>
         {/**Public Routes */}
-        {/*<Route path='/login' element={ <Login mode="login" /> } />
-        <Route path='/register' element={ <Login mode="register" /> } />*/}
+        <Route path='/login' element={ <Login mode="login" /> } />
+        <Route path='/register' element={ <Login mode="register" /> } />
 
 
         {/**Private Routes */}
