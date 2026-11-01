@@ -12,13 +12,17 @@ const useWebRTC = (_roomId, user, onMeetingEnded, _enabled = true) => {
     const localStreamRef = useRef(null)
 
     // Initialise local camera stream if available in browser
-    const initLocalStream = useCallback(async ()=>{
+    const initLocalStream = useCallback(async (isCancelled = ()=>false)=>{
         try{
             if(navigator?.mediaDevices?.getUserMedia){
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: true,
                     audio: true
                 })
+                if(isCancelled()){
+                    stream.getTracks().forEach((track)=>track.stop())
+                    return null
+                }
                 localStreamRef.current = stream;
                 setLocalStream(stream);
             }
@@ -29,9 +33,10 @@ const useWebRTC = (_roomId, user, onMeetingEnded, _enabled = true) => {
     }, []) 
 
     useEffect(()=>{
-        initLocalStream()
-
+        let cancelled = false
+        initLocalStream(()=>cancelled)
         return ()=>{
+            cancelled = true
             if(localStreamRef.current){
                 localStreamRef.current.getTracks().forEach((track)=>track.stop())
             }

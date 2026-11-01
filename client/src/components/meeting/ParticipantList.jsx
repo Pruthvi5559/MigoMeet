@@ -61,7 +61,7 @@ remoteUsers, meetingHostId }) => {
                             ) : (
                                 <MicOffIcon className='w-4 h-4 text-rose-500' />
                             )}
-                            {p.audioEnabled ? (
+                            {p.videoEnabled ? (
                                 <VideoIcon className='w-4 h-4 text-slate-600' />
                             ) : (
                                 <VideoOffIcon className='w-4 h-4 text-rose-500' />
