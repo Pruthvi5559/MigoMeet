@@ -21,7 +21,7 @@ const VideoTile = ({stream, name, isLocal = false, audioEnabled = true, videoEna
       ${videoEnabled ? "opacity-100" : "opacity-0 pointer-events-none absolute"} ${isLocal ? "-scale-x-100" : ""}`} />
 
         {/**Camera off Placeholder */}
-        {!videoEnabled && (
+        {(!videoEnabled || !stream) && (
           <div className='flex flex-col items-center justify-center space-y-3 z-10'>
             <div className='w-20 h-20 rounded-full bg-indigo-600/20 border-2 border-indigo-400/40 
             flex items-center justify-center text-indigo-300 text-2xl font-bold uppercase shadow-inner'>
