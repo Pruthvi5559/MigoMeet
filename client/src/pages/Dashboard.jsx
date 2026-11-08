@@ -8,8 +8,8 @@ import { useUser } from '@clerk/react';
 const Dashboard = () => {
 
   const {user} = useUser();
-  const userName = user.fullName;
-  const userEmail = user.primaryEmailAddress.emailAddress;
+  const userName = user?.fullName || user?.firstName || "User";
+  const userEmail = user?.primaryEmailAddress?.emailAddress || "No email address";
   const navigate = useNavigate()
   const [isCreating, setIsCreating] = useState(false)
   const [currentTime, setCurrentTime] = useState(new Date())
